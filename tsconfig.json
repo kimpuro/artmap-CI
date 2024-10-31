@@ -1,6 +1,7 @@
 {
   "extends": "@toktokhan-dev/ts-config/nextjs.json",
   "compilerOptions": {
+    "strict": true,
     "baseUrl": "src",
     "paths": {
       "@/*": ["./*"],

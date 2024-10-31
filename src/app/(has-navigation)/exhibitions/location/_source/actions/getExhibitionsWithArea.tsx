@@ -39,9 +39,10 @@ export async function getExhibitionsWithArea({
       },
     })
 
+
     // 지역별 그룹
     const groupedByArea = exhibitions.reduce(
-      (acc, exhibition) => {
+      (acc : Record<string,OverlayApiType>, exhibition) => {
         const area = exhibition.area
         if (!acc[area]) {
           acc[area] = {
