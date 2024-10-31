@@ -71,7 +71,7 @@ export const useVisibleElements = () => {
       isOverlayZoom ?
         data.areaGroups.filter((overlay: any) =>
           currentBounds.contain(
-            new kakao.maps.LatLng(overlay.position.lat, overlay.position.lng),
+            new kakao.maps.LatLng((overlay as any).position.lat, (overlay as any).position.lng),
           ),
         )
       : []
