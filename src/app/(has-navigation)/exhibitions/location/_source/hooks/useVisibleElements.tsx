@@ -4,8 +4,10 @@ import { useGetExhibitionsWithAreaQuery } from '@/apis/exhibitions/location/Exhi
 import { useMapStateContext } from '@/app/_source/context/useMapStateContext'
 import { useGlobalMapStore } from '@/stores/map/store'
 
+import {OverlayApiType} from "@/apis/exhibitions/types/model/map";
 import { MAP_OPTIONS } from '../constants/map'
 import { useMapFilter } from './useMapFilter'
+
 
 /**
  * - 지도에 표시될 마커와 오버레이 데이터를 관리합니다.
@@ -62,6 +64,17 @@ export const useVisibleElements = () => {
         new kakao.maps.LatLng(+exhibition.gpsY, +exhibition.gpsX),
       ),
     )
+
+    // 줌 레벨에 따라 마커/오버레이 결정
+    const filteredMarkers = !isOverlayZoom ? visibleExhibitions : []
+    const filteredOverlays =
+      isOverlayZoom ?
+        data.areaGroups.filter((overlay:OverlayApiType) =>
+          currentBounds.contain(
+            new kakao.maps.LatLng(overlay.position.lat, overlay.position.lng),
+          ),
+        )
+      : []
 
     return {
       // 줌 레벨에 따라 마커/오버레이 결정

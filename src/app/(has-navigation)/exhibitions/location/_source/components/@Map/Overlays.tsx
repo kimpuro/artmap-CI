@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import { useGlobalMapStore } from '@/stores/map/store'
 
 import { useVisibleElements } from '../../hooks/useVisibleElements'
+import {OverlayApiType} from "@/apis/exhibitions/types/model/map";
 
 export default function Overlays() {
   const map = useGlobalMapStore((state) => state.map)
@@ -24,17 +25,17 @@ export default function Overlays() {
 
     removeAllOverlays()
 
-    const newOverlays = overlays?.map((overlay) => {
+    const newOverlays = overlays?.map((overlay:OverlayApiType) => {
       const content = document.createElement('div')
       content.className = 'custom-overlay'
       content.innerHTML = `
         <div class="bg-grayscale_gray5 w-[82px] h-[82px] rounded-full flex flex-col items-center justify-center">
-          <span class="font-bold mobile-title-small text-grayscale_white">${(overlay as any).area}</span>
-          <span class="text-grayscale_white mobile-text-large font-bold">${(overlay as any).count}</span>
+          <span class="font-bold mobile-title-small text-grayscale_white">${(overlay).area}</span>
+          <span class="text-grayscale_white mobile-text-large font-bold">${(overlay).count}</span>
         </div>
       `
 
-      const { lat, lng } = (overlay as any).position
+      const { lat, lng } = (overlay).position
 
       // 커스텀 오버레이 생성
       const customOverlay = new window.kakao.maps.CustomOverlay({
