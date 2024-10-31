@@ -29,8 +29,8 @@ export default function Overlays() {
       content.className = 'custom-overlay'
       content.innerHTML = `
         <div class="bg-grayscale_gray5 w-[82px] h-[82px] rounded-full flex flex-col items-center justify-center">
-          <span class="font-bold mobile-title-small text-grayscale_white">${overlay.area}</span>
-          <span class="text-grayscale_white mobile-text-large font-bold">${overlay.count}</span>
+          <span class="font-bold mobile-title-small text-grayscale_white">${(overlay as any).area}</span>
+          <span class="text-grayscale_white mobile-text-large font-bold">${(overlay as any).count}</span>
         </div>
       `
 
