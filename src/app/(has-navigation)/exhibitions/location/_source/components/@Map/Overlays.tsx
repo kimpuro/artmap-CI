@@ -25,7 +25,7 @@ export default function Overlays() {
 
     removeAllOverlays()
 
-    const newOverlays = overlays?.map((overlay:OverlayApiType) => {
+    const newOverlays = overlays?.map((overlay: any) => {
       const content = document.createElement('div')
       content.className = 'custom-overlay'
       content.innerHTML = `
