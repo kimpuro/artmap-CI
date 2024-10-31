@@ -34,7 +34,7 @@ export default function Overlays() {
         </div>
       `
 
-      const { lat, lng } = overlay.position
+      const { lat, lng } = (overlay as any).position
 
       // 커스텀 오버레이 생성
       const customOverlay = new window.kakao.maps.CustomOverlay({
